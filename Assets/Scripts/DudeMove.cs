@@ -5,6 +5,7 @@ public class DudeMove : MonoBehaviour {
 
 	public float speed = 0.025f;
 	private float move = 0f;
+	public Animator animator;
 
 	// Use this for initialization
 	void Start () {
@@ -25,5 +26,13 @@ public class DudeMove : MonoBehaviour {
 		float inputMove = Input.GetAxis ("Horizontal");
 		move = (inputMove * speed);
 
+		if (inputMove>=0){
+			animator.SetBool("Droite",true);
+		}
+		if (inputMove<0){
+			animator.SetBool("Droite",false);
+		}
+
 	}
+
 }
