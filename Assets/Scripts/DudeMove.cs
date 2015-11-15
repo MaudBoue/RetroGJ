@@ -27,20 +27,23 @@ public class DudeMove : MonoBehaviour {
 
 	void FixedUpdate () {
 
-		float inputMove = Input.GetAxis ("Horizontal");
-		move = (inputMove * speed);
+		if (Globals.isFight ()) {
+			float inputMove = Input.GetAxis ("Horizontal");
+			move = (inputMove * speed);
 
-		if (inputMove>=0){
-			animator.SetBool("Droite",true);
-		}
-		if (inputMove<0){
-			animator.SetBool("Droite",false);
-		}
+			if (inputMove >= 0) {
+				animator.SetBool ("Droite", true);
+			}
+			if (inputMove < 0) {
+				animator.SetBool ("Droite", false);
+			}
 
-		if(Input.GetKeyDown(KeyCode.Space) ){ //&& touche == true : recharge quand au sol?
-			rigid.AddForce(new Vector2(0,JumpForce), ForceMode2D.Impulse);
+			if (Input.GetKeyDown (KeyCode.Space)) { //&& touche == true : recharge quand au sol?
+				rigid.AddForce (new Vector2 (0, JumpForce), ForceMode2D.Impulse);
+			}
+		} else {
+			animator.SetBool ("Droite", true);
 		}
-
 	}
 
 }

@@ -58,7 +58,7 @@ public class Globals : MonoBehaviour {
 
 		if (planets == null) {
 			Bounds cameraBounds = PixelPerfectCamera.OrthographicBounds (Camera.main);
-			float xMax = cameraBounds.extents.x - cameraBounds.extents.x * 0.1f;
+			float xMax = (cameraBounds.extents.x - cameraBounds.extents.x * 0.1f) / 2;
 			Globals.planets = new PlanetInfo[planetsCount];
 			
 			for (int i = 0; i < planetsCount; i++) {
@@ -146,5 +146,13 @@ public class Globals : MonoBehaviour {
 		if (ui != null) {
 			ui.SetActive(value);
 		}
+	}
+
+	public static bool isFight(){
+		GameObject obj = GameObject.Find ("gameManager");
+		if (obj != null) {
+			return obj.GetComponent<GameManager>().fight;
+		}
+		return false;
 	}
 }

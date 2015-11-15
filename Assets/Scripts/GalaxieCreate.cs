@@ -132,11 +132,11 @@ public class GalaxieCreate : MonoBehaviour {
 	void OnChangeSelected(int index){
 
 		if (lastSelected) {
-			//lastSelected.GetComponent<Animator>().SetBool("Highlight", false);
+			lastSelected.GetComponent<Animator>().SetBool("Highlight", false);
 		}
 
 		GameObject planetObject = GameObject.Find ("p" + index);
-		//planetObject.GetComponent<Animator> ().SetBool ("Highlight", true);
+		planetObject.GetComponent<Animator> ().SetBool ("Highlight", true);
 
 		lastSelected = planetObject;
 		selected = index;
