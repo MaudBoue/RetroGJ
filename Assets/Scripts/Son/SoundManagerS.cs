@@ -4,12 +4,17 @@ using System.Collections;
 public class SoundManagerS : MonoBehaviour {
 
 	public static SoundManagerS instance = null;
+
+	private GameManager gameManagerScript;
+
 	private AudioSource AudioS;
 
 	public AudioClip musiquePlanete;
 	public AudioClip musiqueCombat;
+	public AudioClip musiqueDeath;
 
 	public bool fight = false;
+	public bool OnPlanete = true;
 	// Use this for initialization
 
 	void Awake () {
@@ -24,21 +29,36 @@ public class SoundManagerS : MonoBehaviour {
 
 	void Start () {
 		AudioS = GetComponent<AudioSource> ();
+		gameManagerScript = GameObject.Find("gameManager").GetComponent<GameManager>();
+		//AudioS.clip = musiqueDefault;
+		//AudioS.Play ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
-		if (Input.GetKey(KeyCode.Z)) {
-			fight=true;
-			AudioS.clip = musiqueCombat;
-			AudioS.Play ();
-		}
-		if (Input.GetKey(KeyCode.A)) {
-			fight=false;
-			AudioS.clip = musiquePlanete;
-			AudioS.Play ();
+		if (OnPlanete) {
+			if (gameManagerScript.fight && AudioS.clip != musiqueCombat) {
+				ChangeMusique (musiqueCombat);
+			}
+			if (gameManagerScript.fight == false && AudioS.clip != musiquePlanete) {
+				ChangeMusique (musiquePlanete);
+			}
+
+			if (Input.GetKey(KeyCode.Z)) {
+				gameManagerScript.fight=true;
+				
+			}
+			if (Input.GetKey(KeyCode.A)) {
+				gameManagerScript.fight=false;
+			}
+
 		}
 
+
+	}
+
+	public void ChangeMusique(AudioClip Clip){
+		AudioS.clip = Clip;
+		AudioS.Play ();
 	}
 }

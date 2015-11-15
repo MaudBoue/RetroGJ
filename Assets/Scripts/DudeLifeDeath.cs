@@ -5,11 +5,15 @@ public class DudeLifeDeath : MonoBehaviour {
 
 	public float MaxLife = 100;
 	public float Life;
+
+	private SoundManagerS SoundM;
 	// Use this for initialization
 	void Start () {
 		if (MaxLife!=null) {
 			Life = MaxLife;
 		}
+
+		SoundM = GameObject.Find ("SoundManager").GetComponent<SoundManagerS> ();
 	}
 	
 	// Update is called once per frame
@@ -28,6 +32,9 @@ public class DudeLifeDeath : MonoBehaviour {
 	private void Dead(){
 		//playSound death
 		Application.LoadLevel("GameOver");
+		SoundM.OnPlanete = false;
+		SoundM.ChangeMusique (SoundM.musiqueDeath);
+
 	}
 
 }
