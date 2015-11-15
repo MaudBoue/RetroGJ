@@ -1,53 +1,147 @@
 {
-	"questions" : {
-		"Qui es-tu ?" : {
-			"attitude" : 0,
-			"aggr" : [1],
-			"reponses" : [
-				"Kalgon",
-				"Kalgon le manginfique"
-			]
-		},
-		"Je suis Graton 2000" : {
-			"attitude" : -1,
-			"aggr" : [1,2],
-			"reponses" : [
-				"Certes...",
-				"Mais encore..."
-			]
-		},
-		"Que veux-tu ?" : {
-			"attitude" : 0,
-			"aggr" : [3],
-			"reponses" : [
-				"De la viande"
-			]
-		},
-		"Je mache le silex" : {
-			"attitude" : -1,
-			"reponses" : [
-				"Encule",
-				"Mange mon oeil"
-			]
-		},
-		"Non!" : {
-			"attitude" : -2,
-			"reponses" : [
-				"Mange mon Jaggon"
-			]
-		}
-	},
-	"aggr" : {
-		"1" : [
-			"Assez de discours",
-			"Treve de palabres"
-		],
-		"2" : [
-			"Kalgon boira dans ton crane"
-		],
-		"3" : [
-			"Ton sang",
-			"Ta mort"
-		]
-	}
+    "questions" : {
+        "Je suis Graton 2000." : {
+            "attitude" : 0,
+            "aggr" : [1,2],
+            "reponses" : [
+                          "Certes.",
+                          "J'en prends note.",
+                          "Entendu."
+                          ]
+        },
+        "Qui es-tu ?" : {
+            "attitude" : 0,
+            "aggr" : [1],
+            "reponses" : [
+                          "U-P042, dit le survolte"
+                          ]
+        },
+        
+        "Que veux-tu ?" : {
+            "attitude" : 0,
+            "aggr" : [3],
+            "reponses" : [
+                          "Dix globes occulaires."
+                          ]
+        },
+        "Que m'offres-tu ?" : {
+            "attitude" : 0,
+            "aggr" : [1,3],
+            "reponses" : [
+                          "Rien",
+                          "Un bidon de kerosene.",
+                          "Une capsule de kerosene.",
+                          "Un virus. Ah. Ah. Ah."
+                          ]
+        },
+        "Bonne traque !" : {
+            "attitude" : 0,
+            "aggr" : [4],
+            "reponses" : [
+                          "Merci. Vous aussi."
+                          ]
+        },
+        "Prosterne-toi !" : {
+            "attitude" : -1,
+            "aggr" : [1,4],
+            "reponses" : [
+                          "Certes non.",
+                          "Objection.",
+                          "Négatif."
+                          ]
+        },
+        "Pas un pas !" : {
+            "attitude" : 0,
+            "aggr" : [1,4],
+            "reponses" : [
+                          "Certes.",
+                          "J'en prends note.",
+                          "Entendu."
+                          ]
+        },
+        "Fuis, vil pleutre !" : {
+            "attitude" : -1,
+            "aggr" : [1,2,4,5],
+            "reponses" : [
+                          "Certes non.",
+                          "Objection.",
+                          "Négatif."
+                          ]
+        },
+        "Je t'ecrase d'une main." : {
+            "attitude" : -1,
+            "aggr" : [1,2,4,5],
+            "reponses" : [
+                          "Certes non.",
+                          "Objection.",
+                          "Négatif."
+                          ]
+        },
+        "Coeur de martien !" : {
+            "attitude" : -1,
+            "aggr" : [1,2,4,5],
+            "reponses" : [
+                          "Certes non.",
+                          "Objection.",
+                          "Négatif."
+                          ]
+        },
+        "Sulfate dégénéré !" : {
+            "attitude" : -1,
+            "aggr" : [1,2,4,5],
+            "reponses" : [
+                          "Certes non.",
+                          "Objection.",
+                          "Négatif."
+                          ]
+        },
+        "Face d'e-sport !" : {
+            "attitude" : -1,
+            "aggr" : [1,2,4,5],
+            "reponses" : [
+                          "Certes non.",
+                          "Objection.",
+                          "Négatif."
+                          ]
+        },
+        "J'arrive en paix." : {},
+        "Gloire à ton clan !" : {},
+        "Tu reflètes les astres." : {},
+        "Pitié, laisse-moi vivre !" : {
+            "attitude" : +1,
+            "aggr" : [1,2],
+            "reponses" : [
+                          "Nous y réfléchissons.",
+                          "Information en cours de traitement.",
+                          "C'est une hypothèse."
+                          ]
+        },
+        "Je mache le kerosene." : {},
+        "Ma force est galactique." : {},
+        "Meme le soleil me fuit." : {},
+        "Les météores m'obéissent." : {}
+    },
+    "aggr" : {
+        "1" : [
+               "Votre discours est imbitable",
+               "Cessez ces sornettes."
+               ],
+        "2" : [
+               "U-P042 surchauffe."
+               ],
+        "3" : [
+               "Votre circuit integre.",
+               "La finition de votre vie.",
+               "Vous mettre a la casse."
+               ],
+        "4" : [
+               "Affirmatif.",
+               "J'en prends note.",
+               "U-P42 aime les virus."
+               ],
+        "5" : [
+               "Je vais vous charger.",
+               "Effacez vos injures."
+               ]
+    }
 }
