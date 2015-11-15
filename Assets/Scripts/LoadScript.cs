@@ -1,16 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GalaxieInit : MonoBehaviour {
+public class LoadScript : MonoBehaviour {
 
-	public int planetsCount = 3;
-	public GameObject planet;
-	
+	public static int zoom = 4;
+
 	// Use this for initialization
 	void Start () {
-
-		//GameObject planet = Instantiate ("Planet");
-
+		Screen.SetResolution (zoom * 128,zoom * 128, false);
+		Application.LoadLevel ("Baston");
 	}
 	
 	// Update is called once per frame
