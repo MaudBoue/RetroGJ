@@ -144,7 +144,7 @@ public class Globals : MonoBehaviour {
 
 		GameObject ui = GameObject.Find ("TextsList");
 		if (ui != null) {
-			ui.SetActive(value);
+			ui.SetActive(true);
 		}
 	}
 

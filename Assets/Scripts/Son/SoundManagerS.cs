@@ -43,6 +43,7 @@ public class SoundManagerS : MonoBehaviour {
 				ChangeMusique (musiquePlanete);
 			}
 
+			/*
 			if (Input.GetKey(KeyCode.Z)) {
 				gameManagerScript.fight=true;
 				
@@ -50,7 +51,7 @@ public class SoundManagerS : MonoBehaviour {
 			if (Input.GetKey(KeyCode.A)) {
 				gameManagerScript.fight=false;
 			}
-
+			*/
 		}
 
 
