@@ -142,9 +142,9 @@ public class ListQuestions : MonoBehaviour {
 			OnBack ();
 		}
 
-		if (GameObject.FindGameObjectsWithTag ("Enemy").Length <= 0) {
-			Fight(false);
-		}
+		/*if (GameObject.FindGameObjectsWithTag ("Enemy").Length <= 0) {
+			//Fight(false);
+		}*/
 	}
 
 	void Parse(JSONClass list){
