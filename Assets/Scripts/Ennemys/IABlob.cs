@@ -12,8 +12,13 @@ public class IABlob : MonoBehaviour {
 
 	private Vector2 RealPosition;
 
+
+	private GameManager gameManagerScript;
+
 	// Use this for initialization
 	void Start () {
+		gameManagerScript = GameObject.Find("gameManager").GetComponent<GameManager>();
+
 		player = GameObject.FindGameObjectWithTag ("Player");
 		anim = this.GetComponent<Animator> ();
 		RealPosition = new Vector2 (transform.position.x,transform.position.y+ 1.5f);
@@ -29,8 +34,11 @@ public class IABlob : MonoBehaviour {
 		if (Vector2.Distance (RealPosition, player.transform.position) < distanceDetection && Time.time >= NextAttaque) {
 			anim.SetBool("Attaque",true);
 			NextAttaque=Time.time+timeBetween2Attacks;
-			Debug.Log ("sfdsfe");
+			//Debug.Log ("sfdsfe");
 		}
+
+
+		anim.SetBool("gmFight",gameManagerScript.fight );
 
 	}
 
