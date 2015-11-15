@@ -12,6 +12,9 @@ public class GalaxieCreate : MonoBehaviour {
 	private GameObject lastSelected;
 	private string[] labels;
 
+	private SoundManagerS SoundM;
+	private GameManager gameManagerScript;
+
 	void Awake(){
 
 		labels = new string[Globals.planetsCount+1];
@@ -85,12 +88,19 @@ public class GalaxieCreate : MonoBehaviour {
 			GameObject planetObject = Instantiate( planet );
 			planetObject.name = "p" + i;
 			planetObject.transform.position = new Vector3(p.x, p.y, 0);
-			//planetObject.transform.localScale = new Vector3(p.scale, p.scale, 0);
+
+			float scale = planetObject.transform.localScale.x;
+			planetObject.transform.localScale = new Vector3(scale / 2, scale / 2, 0);
 		}
 	
 		selected = Globals.currentPlanetId;
 		lastSelected = null;
 		OnChangeSelected (selected);
+
+		gameManagerScript = GameObject.Find("gameManager").GetComponent<GameManager>();
+		SoundM = GameObject.Find ("SoundManager").GetComponent<SoundManagerS> ();
+		SoundM.ChangeMusique (SoundM.musiqueCarte);
+		SoundM.OnPlanete = false;
 	}
 
 	/*bool CheckPosition(float x, float y){
@@ -134,6 +144,8 @@ public class GalaxieCreate : MonoBehaviour {
 
 		textObj.GetComponent<Text> ().text = labels [selected];
 	}
+
+
 	
 	// Update is called once per frame
 	void Update () {
@@ -141,7 +153,14 @@ public class GalaxieCreate : MonoBehaviour {
 		if( Input.GetKeyUp(KeyCode.RightArrow) ){
 			Globals.currentPlanetId = selected;
 			Globals.currentPlanet = Globals.planets[selected];
-			Application.LoadLevel("Baston");
+
+			SoundM.ChangeMusique (SoundM.musiquePlanete);
+			SoundM.OnPlanete = true;
+			gameManagerScript.fight = false;
+
+			Application.LoadLevel(Globals.currentPlanet.scene);
+
+
 		}
 
 		if( Input.GetKeyUp(KeyCode.UpArrow) ){
@@ -150,6 +169,7 @@ public class GalaxieCreate : MonoBehaviour {
 			}else{
 				OnChangeSelected( Globals.planets.Length - 1 );
 			}
+
 		}
 
 		if( Input.GetKeyUp(KeyCode.DownArrow) ){
@@ -158,6 +178,7 @@ public class GalaxieCreate : MonoBehaviour {
 			}else{
 				OnChangeSelected(0);
 			}
+			//PlayAudioSelect ();
 		}
 	}
 }

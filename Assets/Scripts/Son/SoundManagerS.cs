@@ -12,6 +12,7 @@ public class SoundManagerS : MonoBehaviour {
 	public AudioClip musiquePlanete;
 	public AudioClip musiqueCombat;
 	public AudioClip musiqueDeath;
+	public AudioClip musiqueCarte;
 
 	public bool fight = false;
 	public bool OnPlanete = true;

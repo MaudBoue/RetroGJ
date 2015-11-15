@@ -9,7 +9,10 @@ public class LoadScript : MonoBehaviour {
 	void Awake () {
 		Screen.SetResolution (zoom * 128,zoom * 128, false);
 		Globals.GenerateGalaxie ();
-		Application.LoadLevel ("Baston");
+	}
+
+	void Start(){
+		//Application.LoadLevel ("BPlaneteBleue");
 	}
 	
 	// Update is called once per frame

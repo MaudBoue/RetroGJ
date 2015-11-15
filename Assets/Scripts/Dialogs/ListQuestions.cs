@@ -63,6 +63,10 @@ public class ListQuestions : MonoBehaviour {
 		}
 	}
 
+	void Fight(bool value){
+		GameObject.Find ("gameManager").GetComponent<GameManager>().fight = value;
+	}
+
 	// Use this for initialization
 	void Start () {
 
@@ -72,6 +76,17 @@ public class ListQuestions : MonoBehaviour {
 
 		if (Globals.currentPlanet.tribuId > 0) {
 			dialogs = Globals.getJSON ("tribu" + Globals.currentPlanet.tribuId + ".json");
+
+			//Globals.ActivateUI(false);
+
+			if( Globals.currentPlanet.tribuAttack ){
+				Fight (true);
+				Globals.ActivateUI(false);
+			}else{
+				Fight (false);
+				Globals.ActivateUI(true);
+			}
+
 		} else {
 			// Random de rencontre
 			if( Random.Range(1,5) == 1 ){
@@ -94,7 +109,7 @@ public class ListQuestions : MonoBehaviour {
 					}
 				}
 
-			if( Globals.planetsVisited > 10 && !Globals.quest1 ){
+				if( Globals.planetsVisited > 10 && !Globals.quest1 ){
 					objets.Add( "Idole galactique de bravoure" );
 					Globals.quest1 = true;
 				}
@@ -114,18 +129,20 @@ public class ListQuestions : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if( Input.GetKeyUp(KeyCode.DownArrow) && !inReponse ){
-			OnChange (1);
-		}
-		if( Input.GetKeyUp(KeyCode.UpArrow) && !inReponse ){
-			OnChange (-1);
-		}
+		if (Globals.uiEnabled) {
+			if (Input.GetKeyUp (KeyCode.DownArrow) && !inReponse) {
+				OnChange (1);
+			}
+			if (Input.GetKeyUp (KeyCode.UpArrow) && !inReponse) {
+				OnChange (-1);
+			}
 
-		if (Input.GetKeyUp (KeyCode.RightArrow)) {
-			OnSelectItem ();
-		}
-		if (Input.GetKeyUp (KeyCode.LeftArrow) && !inReponse ) {
-			OnBack ();
+			if (Input.GetKeyUp (KeyCode.RightArrow)) {
+				OnSelectItem ();
+			}
+			if (Input.GetKeyUp (KeyCode.LeftArrow) && !inReponse) {
+				OnBack ();
+			}
 		}
 	}
 
@@ -145,7 +162,7 @@ public class ListQuestions : MonoBehaviour {
 					continue;
 				}
 
-				if( Globals.currentPlanet.tribuId == null && item.Key == "Manipuler" ){
+				if( Globals.currentPlanet.tribuId == 0 && item.Key == "Manipuler" ){
 					continue;
 				}
 			}
@@ -209,9 +226,11 @@ public class ListQuestions : MonoBehaviour {
 		}
 
 		GameObject first = GameObject.Find ("Text0" );
-		Text t = first.GetComponent<Text>();
-		if (t.text == "")
-			t.text = " - Rien - ";
+		if (first != null) {
+			Text t = first.GetComponent<Text> ();
+			if (t.text == "")
+				t.text = " - Rien - ";
+		}
 	}
 
 	void OnChange(int change){
@@ -288,7 +307,7 @@ public class ListQuestions : MonoBehaviour {
 					Globals.items.Add( currentList[selected] );
 
 					for(int i = 0; i < objets.Count; i++){
-						if( objets[i] == currentList[selected] ){
+						if( (string)objets[i] == (string)currentList[selected] ){
 							objets.RemoveAt(i);
 							take ();
 							break;
@@ -458,6 +477,12 @@ public class ListQuestions : MonoBehaviour {
 						}
 					}
 
+					if( Globals.currentPlanet.tribuAttitude < -10 ){
+						Globals.currentPlanet.tribuAttack = true;
+						Globals.ActivateUI(false);
+						Fight(true);
+					}
+
 					Random.seed = (int)(Time.time * 10000);
 					int randRep = Random.Range(0, reponsesFinal.Count);
 
@@ -565,7 +590,6 @@ public class ListQuestions : MonoBehaviour {
 		else
 			Parse (actions.AsObject);*/
 		ParseGround ();
-
 		ResetList ();
 	}
 
