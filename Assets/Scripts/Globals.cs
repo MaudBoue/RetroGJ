@@ -52,7 +52,7 @@ public class Globals : MonoBehaviour {
 		scenes.Add ("BPlaneteSable1");
 		scenes.Add ("BPlaneteSable2");
 
-		ArrayList alreadyTaken = new ArrayList();
+		//ArrayList alreadyTaken = new ArrayList();
 
 		if (planets == null) {
 			Bounds cameraBounds = PixelPerfectCamera.OrthographicBounds (Camera.main);
@@ -71,7 +71,7 @@ public class Globals : MonoBehaviour {
 					continue;
 				}
 				
-				int size = Random.Range (1, 3);
+				//int size = Random.Range (1, 3);
 				//float scale = planet.transform.localScale.x / (size * 2);
 
 				// Choix random de la scene

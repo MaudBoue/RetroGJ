@@ -162,7 +162,7 @@ public class ListQuestions : MonoBehaviour {
 					continue;
 				}
 
-				if( Globals.currentPlanet.tribuId == null && item.Key == "Manipuler" ){
+				if( Globals.currentPlanet.tribuId == 0 && item.Key == "Manipuler" ){
 					continue;
 				}
 			}
@@ -307,7 +307,7 @@ public class ListQuestions : MonoBehaviour {
 					Globals.items.Add( currentList[selected] );
 
 					for(int i = 0; i < objets.Count; i++){
-						if( objets[i] == currentList[selected] ){
+						if( (string)objets[i] == (string)currentList[selected] ){
 							objets.RemoveAt(i);
 							take ();
 							break;
