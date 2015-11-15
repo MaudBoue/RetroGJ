@@ -3,32 +3,30 @@ using System.Collections;
 
 public class DudeAttack : MonoBehaviour {
 
-	public GameObject poing;
-	public float attackDelay = 0.25f;
-	private bool attacking = false;
-	private float lastAttack;
+	public float timeBetween2Attacks;
+	
+	private float NextAttaque;
+	private GameObject player;
+	private Animator anim;
 
 	// Use this for initialization
 	void Start () {
-	
+		anim = this.GetComponent<Animator> ();
+		NextAttaque = Time.time;
 	}
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (Input.GetButton ("Fire1")) {
-			attacking = true;
-		} else {
-			attacking = false;
+		if (Input.GetKeyDown(KeyCode.C)) {
+			anim.SetBool("Attaque",true);
+			NextAttaque=Time.time+timeBetween2Attacks;
+			Debug.Log ("sfdsfe");
+			StartCoroutine(attackFalseLaser ());
 		}
+	}
 
-		if (attacking && Time.time >= lastAttack + attackDelay) {
-			if (poing)
-				poing.SetActive (true);
-
-			lastAttack = Time.time;
-		} else {
-			if( poing )
-				poing.SetActive (false );
-		}
+	IEnumerator attackFalseLaser(){
+		yield return new WaitForSeconds(1);
+		anim.SetBool ("Attaque", false);
 	}
 }
