@@ -1,12 +1,12 @@
 {
 	"questions" : {
-		"Je suis Graton 2000. » : {
+		"Je suis Graton 2000." : {
 			"attitude" : 0,
 			"aggr" : [1,2],
 			"reponses" : [
 				"Certes...",
-				"Mais encore..."
-				"Ah…"
+				"Mais encore...",
+				"Ah..."
 			]
 		},
 		"Qui es-tu ?" : {
@@ -25,7 +25,7 @@
 				"L'idole galactique de bravoure"
 			]
 		},
-		"Que m’offres-tu ?" : {
+		"Que m'offres-tu ?" : {
 			"attitude" : 0,
 			"aggr" : [1,3],
 			"reponses" : [
@@ -43,8 +43,8 @@
 			"attitude" : -1,
 			"aggr" : [1,4],
 			"reponses" : [
-				"Certes…"
-				"Mais encore…"
+				"Certes...",
+				"Mais encore...",
 				"Non."
 			]
 		},
@@ -52,8 +52,8 @@
 			"attitude" : -1,
 			"aggr" : [1,4],
 			"reponses" : [
-				"Certes…"
-				"Mais encore…"
+				"Certes...",
+				"Mais encore...",
 				"Non."
 			]
 		},
@@ -61,17 +61,17 @@
 			"attitude" : -1,
 			"aggr" : [1,2,4,5],
 			"reponses" : [
-				"Certes…"
-				"Mais encore…"
+				"Certes...",
+				"Mais encore...",
 				"Non."
 			]
 		},
-		"Je t'ecrase d’une main. » : {
+		"Je t'ecrase d'une main." : {
 			"attitude" : -1,
 			"aggr" : [1,2,4,5],
 			"reponses" : [
-				"Certes…"
-				"Mais encore…"
+				"Certes...",
+				"Mais encore...",
 				"Non."
 			]
 		},
@@ -79,8 +79,8 @@
 			"attitude" : -1,
 			"aggr" : [1,2,4,5],
 			"reponses" : [
-				"Certes…"
-				"Mais encore…"
+				"Certes...",
+				"Mais encore...",
 				"Non."
 			]
 		},
@@ -88,35 +88,36 @@
 			"attitude" : -1,
 			"aggr" : [1,2,4,5],
 			"reponses" : [
-				"Certes…"
-				"Mais encore…"
+				"Certes...",
+				"Mais encore...",
 				"Non."
 			]
 		},
-		"Face d’e-sport !" : {
+		"Face d'e-sport !" : {
 			"attitude" : -1,
 			"aggr" : [1,2,4,5],
 			"reponses" : [
-				"Certes…"
-				"Mais encore…"
+				"Certes...",
+				"Mais encore...",
 				"Non."
 			]
-		}, 		"J’arrive en paix."
-		"Gloire à ton clan !"
-		"Tu reflètes les astres."
+		},
+		"J'arrive en paix." : {},
+		"Gloire à ton clan !" : {},
+		"Tu reflètes les astres." : {},
 		"Pitié, laisse-moi vivre !" : {
 			"attitude" : -1,
 			"aggr" : [1,2],
 			"reponses" : [
-				"Certes…"
-				"Mais encore…"
+				"Certes...",
+				"Mais encore...",
 				"Non."
 			]
 		},
-		"Je mache le kerosene."
-		"Ma force est galactique."
-		"Meme le soleil me fuit."
-		"Les météores m’obéissent."
+		"Je mache le kerosene." : {},
+		"Ma force est galactique." : {},
+		"Meme le soleil me fuit." : {},
+		"Les météores m'obéissent." : {}
 	},
 	"aggr" : {
 		"1" : [
@@ -131,12 +132,12 @@
 			"Ta mort"
 		],
 		"4" : [
-			"Mais encore… ?"
-			"A part ça… ?"
+			"Mais encore... ?",
+			"A part ça... ?",
 			"Que les astres guident Kalgon !"
 		],
 		"5" : [
-			"Fatigue de vivre ?"
+			"Fatigue de vivre ?",
 			"Ravale tes jurons !"
 		]
 	}

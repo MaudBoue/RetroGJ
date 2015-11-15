@@ -40,18 +40,20 @@ public class ListQuestions : MonoBehaviour {
 	void Awake(){
 		actions = Globals.getJSON ("actions.json");
 
-		allObjets.Add ("Fruit bizarre", new Objet("eat", 25));
-		allObjets.Add ("Capsule de soin", new Objet("eat", 75));
+		allObjets.Add ("Fruit bizarre", new Objet("eat", 25, 40));
+		allObjets.Add ("Capsule de soin", new Objet("eat", 75, 10));
 
-		allObjets.Add ("Bidon de kerozene", new Objet("drink", 50));
-		allObjets.Add ("Bave de limace", new Objet("drink", 25));
-		allObjets.Add ("Flasque de bave", new Objet("drink", 50));
+		allObjets.Add ("Bidon de kerozene", new Objet("drink", 50, 40));
+		allObjets.Add ("Bave de limace", new Objet("drink", 25, 10));
+		allObjets.Add ("Flasque de bave", new Objet("drink", 50, 25));
 	
 		allObjets.Add ("Bidon de kerozene vide", new Objet("useless", 0));
-		allObjets.Add ("Idole galactique", new Objet("useless", 0));
+		allObjets.Add ("Idole galactique de bravoure", new Objet("useless", 0));
 		allObjets.Add ("Bibelot informe", new Objet("useless", 0));
 		allObjets.Add ("Crane usage", new Objet("useless", 0));
 		allObjets.Add ("Globe occulaire", new Objet("useless", 0));
+		allObjets.Add ("Flute en titanium", new Objet("useless", 0));
+		allObjets.Add ("Epee rouillee", new Objet("useless", 0));
 
 		foreach(KeyValuePair<string, Objet> item in allObjets){
 			item.Value.name = item.Key;
@@ -61,9 +63,9 @@ public class ListQuestions : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 
-		objets = new ArrayList ();
+		Globals.CheckState ();
 
-		Debug.Log (Globals.currentPlanetId);
+		objets = new ArrayList ();
 
 		if (Globals.currentPlanet.tribuId > 0) {
 			dialogs = Globals.getJSON ("tribu" + Globals.currentPlanet.tribuId + ".json");
@@ -98,16 +100,18 @@ public class ListQuestions : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		if( Input.GetKeyUp(KeyCode.DownArrow) ){
+
+		if( Input.GetKeyUp(KeyCode.DownArrow) && !inReponse ){
 			OnChange (1);
 		}
-		if( Input.GetKeyUp(KeyCode.UpArrow) ){
+		if( Input.GetKeyUp(KeyCode.UpArrow) && !inReponse ){
 			OnChange (-1);
 		}
+
 		if (Input.GetKeyUp (KeyCode.RightArrow)) {
 			OnSelectItem ();
 		}
-		if (Input.GetKeyUp (KeyCode.LeftArrow)) {
+		if (Input.GetKeyUp (KeyCode.LeftArrow) && !inReponse ) {
 			OnBack ();
 		}
 	}
@@ -217,12 +221,19 @@ public class ListQuestions : MonoBehaviour {
 
 	void OnSelectItem(){
 
-		JSONNode item = currentListValues [selected];
+		JSONNode item = currentListValues[selected];
 		JSONClass obj = null;
 
 		if(item != null) obj = item.AsObject;
 
 		bool noReset = false;
+
+		if (inReponse) {
+			reponseObject.SetActive(false);
+			inReponse = false;
+			noReset = true;
+			return;
+		}
 
 		if (obj == null) {
 			string str = item;
@@ -233,6 +244,8 @@ public class ListQuestions : MonoBehaviour {
 				str = str.Replace("\"", "");
 				
 				MethodInfo method = this.GetType().GetMethod (str);
+
+				Debug.Log (str);
 				if( method != null ){
 					method.Invoke(this, null);
 				}
@@ -277,7 +290,15 @@ public class ListQuestions : MonoBehaviour {
 						Objet def = allObjets[itemName];
 
 						if( def.name == currentList[selected] ){
+
 							Globals.playerHealth += def.score;
+
+							if( currentInv == "eat" ){
+								Globals.faim += def.scoreState;
+							}else{
+								Globals.soif += def.scoreState;
+							}
+
 							Globals.items.RemoveAt(i);
 							break;
 						}
@@ -291,7 +312,63 @@ public class ListQuestions : MonoBehaviour {
 					// Donner
 					case "give":
 
+					// Nom de l'objet
+					string itemName = currentList[selected];
 
+					// Liste des réponses
+					ArrayList repGood = new ArrayList();
+					repGood.Add ("Tres bien");
+					repGood.Add ("Certes");
+					repGood.Add ("D'accord");
+
+					ArrayList repBad = new ArrayList();
+					repBad.Add ("Mais encore...");
+					repBad.Add ("Certes...");
+					repBad.Add ("Non...");
+
+					// Deifnition de l'objet
+					Objet def = allObjets[itemName];
+
+					// Réponse
+					string reponse = "";
+					int score = 0;
+
+					// Reaction du PNJ
+					if( def.type == "useless" ){
+						if( Globals.currentPlanet.tribuQuest == def.name ){
+							// Win ?
+						}else{
+							// Pas bien
+							int rep = Random.Range(0, repBad.Count - 1);
+							reponse = (string)repBad[rep];
+						}
+					}else{
+						// Bien
+						int rep = Random.Range(0, repGood.Count - 1);
+						reponse = (string)repGood[rep];
+					}
+
+					// Supression de l'inventaire
+					for(int i = 0; i < Globals.items.Count; i++){
+						string name = (string)Globals.items[i];
+						
+						if( name == itemName ){
+							Globals.items.RemoveAt(i);
+						}
+					}
+
+					// MAJ de la liste
+					give ();
+
+					// On affiche la réponse
+					reponseObject.SetActive(true);
+					GameObject reponseText = GameObject.Find ("Reponse");
+					Text t = reponseText.GetComponent<Text>();
+
+					t.text = reponse;
+					inReponse = true;
+
+					Globals.currentPlanet.tribuAttitude += score;
 
 					break;
 				}
@@ -341,14 +418,14 @@ public class ListQuestions : MonoBehaviour {
 					if( att != 0){
 
 						if( Globals.currentPlanet != null && Globals.currentPlanet.tribuAttitude == 0){
-							//Globals.currentPlanet.tribuAttitude = att;
+							//Globals.currentPlanet.tribuAttitude += att;
 							Debug.Log ("Agressif");
 						}
 					
 					// Attitude neutre
 					}else{
 						if( Random.Range(1, 10) == 1 ){
-							//Globals.currentPlanet.tribuAttitude = -1;
+							//Globals.currentPlanet.tribuAttitude += -3;
 							Debug.Log ("Top neutre y'en a marre");
 						}
 
@@ -371,10 +448,6 @@ public class ListQuestions : MonoBehaviour {
 					noReset = true;
 
 				// Fin de réponse
-				}else{
-					reponseObject.SetActive(false);
-					inReponse = false;
-					noReset = true;
 				}
 			}
 		}
@@ -438,6 +511,18 @@ public class ListQuestions : MonoBehaviour {
 		ResetList ();
 	}
 
+	public void state(){
+		reponseObject.SetActive(true);
+		GameObject reponseText = GameObject.Find ("Reponse");
+		Text t = reponseText.GetComponent<Text>();
+		
+		t.text = "Vie : " + Globals.playerHealth + "/100\n\n" +
+			"Faim : " + Globals.faim + "/100\n\n" + 
+			"Soif : " + Globals.soif + "/100\n\n";
+		
+		inReponse = true;
+	}
+	
 	void ParseInv(){
 		currentList = new string[Globals.items.Count];
 		currentListValues = new JSONNode[Globals.items.Count];

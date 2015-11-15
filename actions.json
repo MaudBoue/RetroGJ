@@ -5,9 +5,9 @@
 		"Donner": "do:give"
 	},
 	"Sante" : {
-		"Dormir" : "do:sleep",
 		"Boire" : "do:drink",
-		"Manger" : "do:eat"
+		"Manger" : "do:eat",
+		"Etat" : "do:state"
 	},
 	"Decoller" : "do:leave"
 }
