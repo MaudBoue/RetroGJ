@@ -20,8 +20,7 @@ public class cameraFollow : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		//Debug.Log (Vector2.Distance (new Vector2(BoundGauche.transform.position.x,0), new Vector2(target.transform.position.x,0)));
-		Debug.Log (BoundGauche.transform.position.x + CameraSize);
+		//Debug.Log (BoundGauche.transform.position.x + CameraSize);
 
 		if (target) {
 			if (target.position.x > (BoundGauche.transform.position.x+CameraSize) && target.position.x < (BoundDroite.transform.position.x-CameraSize) )
