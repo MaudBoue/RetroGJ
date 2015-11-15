@@ -8,6 +8,9 @@ using System.Reflection;
 
 public class ListQuestions : MonoBehaviour {
 
+	public GameManager gameManagerScript;
+	public DudeLifeDeath dudeLifeDeath;
+	
 	public Color normalColor = new Color(0.6f,0.6f,0.6f);
 	public Color selectedColor = new Color(1f,1f,1f);
 
@@ -89,6 +92,16 @@ public class ListQuestions : MonoBehaviour {
 						}
 						iobj++;
 					}
+				}
+
+			if( Globals.planetsVisited > 10 && !Globals.quest1 ){
+					objets.Add( "Idole galactique de bravoure" );
+					Globals.quest1 = true;
+				}
+
+				if( Globals.planetsVisited > 15 && !Globals.quest2 ){
+					objets.Add( "Globe occulaire" );
+					Globals.quest2 = true;
 				}
 			//}
 		}
@@ -194,6 +207,11 @@ public class ListQuestions : MonoBehaviour {
 				}
 			}
 		}
+
+		GameObject first = GameObject.Find ("Text0" );
+		Text t = first.GetComponent<Text>();
+		if (t.text == "")
+			t.text = " - Rien - ";
 	}
 
 	void OnChange(int change){
@@ -221,11 +239,6 @@ public class ListQuestions : MonoBehaviour {
 
 	void OnSelectItem(){
 
-		JSONNode item = currentListValues[selected];
-		JSONClass obj = null;
-
-		if(item != null) obj = item.AsObject;
-
 		bool noReset = false;
 
 		if (inReponse) {
@@ -234,6 +247,11 @@ public class ListQuestions : MonoBehaviour {
 			noReset = true;
 			return;
 		}
+
+		JSONNode item = currentListValues[selected];
+		JSONClass obj = null;
+
+		if(item != null) obj = item.AsObject;
 
 		if (obj == null) {
 			string str = item;
@@ -245,7 +263,6 @@ public class ListQuestions : MonoBehaviour {
 				
 				MethodInfo method = this.GetType().GetMethod (str);
 
-				Debug.Log (str);
 				if( method != null ){
 					method.Invoke(this, null);
 				}
@@ -273,6 +290,7 @@ public class ListQuestions : MonoBehaviour {
 					for(int i = 0; i < objets.Count; i++){
 						if( objets[i] == currentList[selected] ){
 							objets.RemoveAt(i);
+							take ();
 							break;
 						}
 					}
@@ -336,7 +354,8 @@ public class ListQuestions : MonoBehaviour {
 					// Reaction du PNJ
 					if( def.type == "useless" ){
 						if( Globals.currentPlanet.tribuQuest == def.name ){
-							// Win ?
+							Debug.Log ("Win");
+
 						}else{
 							// Pas bien
 							int rep = Random.Range(0, repBad.Count - 1);
@@ -388,6 +407,8 @@ public class ListQuestions : MonoBehaviour {
 				// Affiche la réponse
 				if( !inReponse ){
 
+					string question = currentList[selected];
+
 					countQuestion++;
 
 					JSONArray reponses = currentListValues[selected]["reponses"].AsArray;
@@ -396,7 +417,7 @@ public class ListQuestions : MonoBehaviour {
 
 					ArrayList reponsesFinal = new ArrayList();
 
-					if( true /*Globals.currentPlanet.tribuAttitude < 0*/ ){
+					if( Globals.currentPlanet.tribuAttitude < -5 ){
 						int count = 0;
 						for(int i = 0; i < aggrs.Count; i++){
 							int aggrId = aggrs[i].AsInt;
@@ -408,6 +429,8 @@ public class ListQuestions : MonoBehaviour {
 								count++;
 							}
 						}
+
+						Debug.Log ("Insulte");
 					}else{
 						for(int i = 0; i < reponses.Count; i++){
 							reponsesFinal.Add(reponses[i] + "");
@@ -418,14 +441,14 @@ public class ListQuestions : MonoBehaviour {
 					if( att != 0){
 
 						if( Globals.currentPlanet != null && Globals.currentPlanet.tribuAttitude == 0){
-							//Globals.currentPlanet.tribuAttitude += att;
+							Globals.currentPlanet.tribuAttitude += att;
 							Debug.Log ("Agressif");
 						}
 					
 					// Attitude neutre
 					}else{
 						if( Random.Range(1, 10) == 1 ){
-							//Globals.currentPlanet.tribuAttitude += -3;
+							Globals.currentPlanet.tribuAttitude += -3;
 							Debug.Log ("Top neutre y'en a marre");
 						}
 
@@ -442,7 +465,56 @@ public class ListQuestions : MonoBehaviour {
 					GameObject reponseText = GameObject.Find ("Reponse");
 					Text t = reponseText.GetComponent<Text>();
 
-					t.text = (string)reponsesFinal.ToArray()[randRep];
+					string repFinal = (string)reponsesFinal.ToArray()[randRep];
+
+					if( question == "Que veux-tu ?" ){
+						if( Globals.currentPlanet.tribuQuest == null ){
+
+							if( Globals.currentPlanet.tribuId == 1){
+								Globals.currentPlanet.tribuQuest = "Idole galactique de bravoure";
+							}else{
+								Globals.currentPlanet.tribuQuest = "Globe occulaire";
+							}
+
+						}
+
+						repFinal = "Trouves moi : " + Globals.currentPlanet.tribuQuest;
+
+					}else if( question == "Que m'offres-tu ?" ){
+						if( Globals.currentPlanet.tribuDon == null ){
+
+							/*
+							if( Random.Range (1, 5) == 1 ){
+								int objIndex = Random.Range(0, allObjets.Count);
+								int iobj = 0;
+								foreach(KeyValuePair<string, Objet> row in allObjets){
+									if( iobj == objIndex ){
+										Globals.currentPlanet.tribuQuest = row.Key;
+									}
+									iobj++;
+								}
+							}else{
+								if( Random.Range(1,2) == 1 ){
+									Globals.currentPlanet.tribuDon = "Rien";
+								}else{
+									Globals.currentPlanet.tribuDon = "Ma compassion";
+								}
+							}
+							*/
+
+							if( Globals.currentPlanet.tribuId == 1){
+								Globals.currentPlanet.tribuDon = "Ma compassion";
+							}else{
+								Globals.currentPlanet.tribuDon = "U-P042, dit le survolte";
+							}
+
+
+						}
+
+						repFinal = Globals.currentPlanet.tribuDon;
+					}
+
+					t.text = repFinal;
 
 					inReponse = true;
 					noReset = true;
@@ -461,6 +533,13 @@ public class ListQuestions : MonoBehaviour {
 	}
 
 	void OnBack(){
+
+		if (inReponse) {
+			reponseObject.SetActive(false);
+			inReponse = false;
+			return;
+		}
+
 		switch(currentAction){
 		default:
 		case "dialogs":
@@ -481,15 +560,21 @@ public class ListQuestions : MonoBehaviour {
 	public void take(){
 		currentInv = "take";
 
-		if (objets.Count > 0)
+		/*if (objets.Count > 0)
 			ParseGround ();
 		else
-			Parse (actions.AsObject);
+			Parse (actions.AsObject);*/
+		ParseGround ();
 
 		ResetList ();
 	}
 
 	public void give(){
+
+		if (currentListValues [selected] == null) {
+			Parse (actions.AsObject);
+		}
+
 		currentInv = "give";
 		ParseInv ();
 		ResetList ();
@@ -558,6 +643,10 @@ public class ListQuestions : MonoBehaviour {
 		
 		UpdateList ();
 		OnChange (0);
+	}
+
+	void StartFight(){
+		gameManagerScript.fight = true;
 	}
 
 }

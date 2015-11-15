@@ -108,7 +108,7 @@
         "Gloire à ton clan !" : {},
         "Tu reflètes les astres." : {},
         "Pitié, laisse-moi vivre !" : {
-            "attitude" : +1,
+            "attitude" : 1,
             "aggr" : [1,2],
             "reponses" : [
                           "Nous y réfléchissons.",

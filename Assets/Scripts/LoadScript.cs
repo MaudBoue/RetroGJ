@@ -6,8 +6,9 @@ public class LoadScript : MonoBehaviour {
 	public static int zoom = 4;
 
 	// Use this for initialization
-	void Start () {
+	void Awake () {
 		Screen.SetResolution (zoom * 128,zoom * 128, false);
+		Globals.GenerateGalaxie ();
 		Application.LoadLevel ("Baston");
 	}
 	

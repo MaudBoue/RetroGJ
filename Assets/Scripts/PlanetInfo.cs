@@ -9,7 +9,9 @@ public class PlanetInfo{
 
 	public int tribuId = 0;
 	public int tribuAttitude = 0;
+
 	public string tribuQuest;
+	public string tribuDon;
 
 	public PlanetInfo (){
 	}

@@ -102,9 +102,33 @@
 				"Non."
 			]
 		},
-		"J'arrive en paix." : {},
-		"Gloire à ton clan !" : {},
-		"Tu reflètes les astres." : {},
+		"J'arrive en paix." : {
+			"attitude" : 0,
+			"aggr" : [1,2,4,5],
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Ah..."
+			]
+		},
+		"Gloire à ton clan !" : {
+			"attitude" : 0,
+			"aggr" : [1,2,4,5],
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Ah..."
+			]
+		},
+		"Tu reflètes les astres." : {
+			"attitude" : 0,
+			"aggr" : [1,2,4,5],
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Ah..."
+			]
+		},
 		"Pitié, laisse-moi vivre !" : {
 			"attitude" : -1,
 			"aggr" : [1,2],
@@ -114,10 +138,46 @@
 				"Non."
 			]
 		},
-		"Je mache le kerosene." : {},
-		"Ma force est galactique." : {},
-		"Meme le soleil me fuit." : {},
-		"Les météores m'obéissent." : {}
+		"Je mache le kerosene." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		},
+		"Ma force est galactique." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		},
+		"Meme le soleil me fuit." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		},
+		"Les météores m'obéissent." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		}
 	},
 	"aggr" : {
 		"1" : [

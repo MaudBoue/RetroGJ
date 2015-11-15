@@ -4,7 +4,7 @@ using System.Collections;
 
 public class GalaxieCreate : MonoBehaviour {
 
-	public int planetsCount = 3;
+	//public int planetsCount = 3;
 	public GameObject planet;
 	public GameObject textObj;
 
@@ -14,7 +14,7 @@ public class GalaxieCreate : MonoBehaviour {
 
 	void Awake(){
 
-		labels = new string[planetsCount];
+		labels = new string[Globals.planetsCount+1];
 		labels [0] = "Planete Xanthia";
 		labels [1] = "Planete Jaggon";
 		labels [2] = "Planete Prulule";
@@ -22,6 +22,7 @@ public class GalaxieCreate : MonoBehaviour {
 		labels [4] = "Planete Zoubzoub";
 		labels [5] = "Planete Krelarf";
 
+		/*
 		// Generation de la galaxie
 		if (Globals.planets == null) {
 			
@@ -53,17 +54,24 @@ public class GalaxieCreate : MonoBehaviour {
 
 			AttachTribu();
 			System.Array.Sort(Globals.planets, SortPlanets);
+		
+			PlanetInfo p1 = Globals.planets [0];
+			p1.tribuId = 1;
+
+			Globals.currentPlanet = p1;
+			Globals.currentPlanetId = 0;
 		}
+		*/
 	}
 
-	int SortPlanets(PlanetInfo a, PlanetInfo b){
+	/*int SortPlanets(PlanetInfo a, PlanetInfo b){
 		if (a.y > b.y) {
 			return -1;
 		} else if (a.y < b.y) {
 			return 1;
 		}
 		return 0;
-	}
+	}*/
 
 	// Use this for initialization
 	void Start () {
@@ -71,13 +79,13 @@ public class GalaxieCreate : MonoBehaviour {
 		int i;
 
 		// Placement des planétes
-		for (i = 0; i < this.planetsCount; i++) {
+		for (i = 0; i < Globals.planetsCount; i++) {
 			PlanetInfo p = Globals.planets[i];
 
 			GameObject planetObject = Instantiate( planet );
 			planetObject.name = "p" + i;
 			planetObject.transform.position = new Vector3(p.x, p.y, 0);
-			planetObject.transform.localScale = new Vector3(p.scale, p.scale, 0);
+			//planetObject.transform.localScale = new Vector3(p.scale, p.scale, 0);
 		}
 	
 		selected = Globals.currentPlanetId;
@@ -85,7 +93,7 @@ public class GalaxieCreate : MonoBehaviour {
 		OnChangeSelected (selected);
 	}
 
-	bool CheckPosition(float x, float y){
+	/*bool CheckPosition(float x, float y){
 
 		if (Globals.planets.Length == 0)
 			return true;
@@ -107,12 +115,9 @@ public class GalaxieCreate : MonoBehaviour {
 		int p1Index = 0;
 		int p2Index = 1;
 
-		PlanetInfo p1 = Globals.planets [p1Index];
-		p1.tribuId = 1;
-
 		PlanetInfo p2 = Globals.planets [p2Index];
 		p2.tribuId = 2;
-	}
+	}*/
 
 	void OnChangeSelected(int index){
 
@@ -135,10 +140,6 @@ public class GalaxieCreate : MonoBehaviour {
 
 		if( Input.GetKeyUp(KeyCode.RightArrow) ){
 			Globals.currentPlanetId = selected;
-
-			Debug.Log(selected);
-			Debug.Log(Globals.currentPlanetId);
-
 			Globals.currentPlanet = Globals.planets[selected];
 			Application.LoadLevel("Baston");
 		}
