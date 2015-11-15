@@ -32,7 +32,6 @@ public class GalaxieCreate : MonoBehaviour {
 			for (int i = 0; i < this.planetsCount; i++) {
 				
 				float x = Random.Range (- xMax, xMax);
-
 				float y = Random.Range (- xMax, xMax);
 				if( y < 0 && y < -4.5f) y = -4.5f;
 				
@@ -52,9 +51,8 @@ public class GalaxieCreate : MonoBehaviour {
 				Globals.planets [i] = p;
 			}
 
-			System.Array.Sort(Globals.planets, SortPlanets);
-
 			AttachTribu();
+			System.Array.Sort(Globals.planets, SortPlanets);
 		}
 	}
 
@@ -81,9 +79,10 @@ public class GalaxieCreate : MonoBehaviour {
 			planetObject.transform.position = new Vector3(p.x, p.y, 0);
 			planetObject.transform.localScale = new Vector3(p.scale, p.scale, 0);
 		}
-
+	
+		selected = Globals.currentPlanetId;
 		lastSelected = null;
-		OnChangeSelected (0);
+		OnChangeSelected (selected);
 	}
 
 	bool CheckPosition(float x, float y){
@@ -126,13 +125,20 @@ public class GalaxieCreate : MonoBehaviour {
 
 		lastSelected = planetObject;
 		selected = index;
+		Globals.currentPlanetId = index;
 
 		textObj.GetComponent<Text> ().text = labels [selected];
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if( Input.GetKeyUp(KeyCode.Space) ){
+
+		if( Input.GetKeyUp(KeyCode.RightArrow) ){
+			Globals.currentPlanetId = selected;
+
+			Debug.Log(selected);
+			Debug.Log(Globals.currentPlanetId);
+
 			Globals.currentPlanet = Globals.planets[selected];
 			Application.LoadLevel("Baston");
 		}

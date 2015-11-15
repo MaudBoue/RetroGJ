@@ -8,7 +8,7 @@ public class PlanetInfo
 	public float y;
 	public float scale;
 
-	public int tribuId;
+	public int tribuId = 0;
 	public int tribuAttitude;
 
 	public PlanetInfo (){

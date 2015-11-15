@@ -9,6 +9,5 @@
 		"Boire" : "do:drink",
 		"Manger" : "do:eat"
 	},
-	"Decoller" : "do:leave",
-	"Non" : "do:non"
+	"Decoller" : "do:leave"
 }
