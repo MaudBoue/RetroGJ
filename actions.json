@@ -1,0 +1,14 @@
+{
+	"Dire" : "action:dialogs",
+	"Manipuler" : {
+		"Prendre": "do:take",
+		"Donner": "do:give"
+	},
+	"Sante" : {
+		"Dormir" : "do:sleep",
+		"Boire" : "do:drink",
+		"Manger" : "do:eat"
+	},
+	"Decoller" : "do:leave",
+	"Non" : "do:non"
+}

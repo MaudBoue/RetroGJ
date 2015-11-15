@@ -1,0 +1,24 @@
+{
+	"questions" : {
+		"Choix 1" : {
+			"Sous-choix 1": "Reponse",
+			"Sous-choix 2": "Reponse",
+			"Sous-choix 3": "Reponse"
+		},
+		"Choix 2" : {
+			"Sous-choix 1": "Reponse",
+			"Sous-choix 2": "Reponse",
+			"Sous-choix 3": "Reponse"
+		},
+		"Choix 3" : {
+			"Sous-choix 1": "Reponse",
+			"Sous-choix 2": "Reponse",
+			"Sous-choix 3": "Reponse"
+		},
+		"Choix 4" : {},
+		"Choix 5" : {
+			"Sous-choix 1": "Reponse",
+			"Sous-choix 2": "Reponse"
+		}
+	}
+}

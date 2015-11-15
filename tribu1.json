@@ -1,0 +1,36 @@
+{
+	"Qui es-tu ?" : {
+		"attitude" : 0,
+		"reponses" : [
+			"Encule",
+			"Mange mon oeil"
+		]
+	},
+	"Je suis Graton 2000" : {
+		"attitude" : -1,
+		"reponses" : [
+			"Encule",
+			"Mange mon oeil"
+		]
+	},
+	"Que veux-tu ?" : {
+		"attitude" : 0,
+		"reponses" : [
+			"Encule",
+			"Mange mon oeil"
+		]
+	},
+	"Je mache le silex" : {
+		"attitude" : -1,
+		"reponses" : [
+			"Encule",
+			"Mange mon oeil"
+		]
+	},
+	"Non!" : {
+		"attitude" : -1,
+		"reponses" : [
+			"Mange mon Jaggon"
+		]
+	}
+}

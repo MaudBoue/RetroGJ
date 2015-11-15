@@ -8,13 +8,17 @@ public class PixelPerfectCamera : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		Screen.SetResolution (256, 256, false);
 		unitsPerPixel = 1f / textureSize;
-		Camera.main.orthographicSize = (Screen.height / 2f) * unitsPerPixel;
+		Camera.main.orthographicSize = ( (Screen.height / 2f) * unitsPerPixel ) / LoadScript.zoom;
 	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+
+	public static Bounds OrthographicBounds(Camera camera)
+	{
+		float screenAspect = (float)Screen.width / (float)Screen.height;
+		float cameraHeight = camera.orthographicSize * 2;
+		Bounds bounds = new Bounds(
+			camera.transform.position,
+			new Vector3(cameraHeight * screenAspect, cameraHeight, 0));
+		return bounds;
 	}
 }
