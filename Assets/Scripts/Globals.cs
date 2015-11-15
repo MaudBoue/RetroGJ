@@ -5,7 +5,7 @@ using SimpleJSON;
 
 public class Globals : MonoBehaviour {
 
-	public static int planetsCount = 6;
+	public static int planetsCount = 5;
 	public static int planetsVisited = 0;
 	public static PlanetInfo[] planets;
 	public static string[] planetsNames;
@@ -21,6 +21,7 @@ public class Globals : MonoBehaviour {
 	public static bool quest2 = false;
 
 	public static bool uiEnabled = true;
+	public static string mort = "";
 
 	public static JSONNode getJSON(string filename){
 		return JSON.Parse(System.IO.File.ReadAllText(filename));
@@ -36,8 +37,10 @@ public class Globals : MonoBehaviour {
 
 		if (faim <= 0) {
 			// Mort de faim
+			mort = "Vous etes mort de faim";
 		}else if(soif <= 0){
 			// Mort de soif
+			mort = "Vous etes mort de soif";
 		}
 
 		planetsVisited++;
@@ -48,7 +51,6 @@ public class Globals : MonoBehaviour {
 
 		ArrayList scenes = new ArrayList ();
 		scenes.Add ("BPlaneteBCyan");
-		scenes.Add ("BPlaneteRouge1");
 		scenes.Add ("BPlaneteSable1");
 		scenes.Add ("BPlaneteSable2");
 
@@ -96,6 +98,7 @@ public class Globals : MonoBehaviour {
 			}
 			
 			PlanetInfo p2 = Globals.planets [1];
+			p2.scene = "BPlaneteRouge1";
 			p2.tribuId = 2;
 
 			System.Array.Sort (Globals.planets, SortPlanets);

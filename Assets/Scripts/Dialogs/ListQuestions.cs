@@ -91,9 +91,11 @@ public class ListQuestions : MonoBehaviour {
 			// Random de rencontre
 			if( Random.Range(1,5) == 1 ){
 				// Monters @todo
+				Fight (true);
+				Globals.ActivateUI(false);
 			}
 
-			//if( Random.Range (1,3) == 1 ){
+			if( Random.Range (1,3) == 1 ){
 				int randObjCount = Random.Range(1, 3);
 				for(int i = 0; i < randObjCount; i++){
 					// Objets dans la scene
@@ -118,7 +120,7 @@ public class ListQuestions : MonoBehaviour {
 					objets.Add( "Globe occulaire" );
 					Globals.quest2 = true;
 				}
-			//}
+			}
 		}
 
 		Parse (actions.AsObject);
@@ -332,8 +334,10 @@ public class ListQuestions : MonoBehaviour {
 
 							if( currentInv == "eat" ){
 								Globals.faim += def.scoreState;
+								if( Globals.faim > 100 ) Globals.faim = 100;
 							}else{
 								Globals.soif += def.scoreState;
+								if( Globals.soif > 100 ) Globals.soif = 100;
 							}
 
 							Globals.items.RemoveAt(i);
