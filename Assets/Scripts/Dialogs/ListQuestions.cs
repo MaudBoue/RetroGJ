@@ -128,25 +128,22 @@ public class ListQuestions : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (Globals.uiEnabled) {
-			if (Input.GetKeyUp (KeyCode.DownArrow) && !inReponse) {
-				OnChange (1);
-			}
-			if (Input.GetKeyUp (KeyCode.UpArrow) && !inReponse) {
-				OnChange (-1);
-			}
-
-			if (Input.GetKeyUp (KeyCode.RightArrow)) {
-				OnSelectItem ();
-			}
-			if (Input.GetKeyUp (KeyCode.LeftArrow) && !inReponse) {
-				OnBack ();
-			}
+		if (Input.GetKeyUp (KeyCode.DownArrow) && !inReponse) {
+			OnChange (1);
+		}
+		if (Input.GetKeyUp (KeyCode.UpArrow) && !inReponse) {
+			OnChange (-1);
 		}
 
-		if (GameObject.FindGameObjectsWithTag ("Enemy").Length <= 0 && !Globals.uiEnabled) {
+		if (Input.GetKeyUp (KeyCode.RightArrow)) {
+			OnSelectItem ();
+		}
+		if (Input.GetKeyUp (KeyCode.LeftArrow) && !inReponse) {
+			OnBack ();
+		}
+
+		if (GameObject.FindGameObjectsWithTag ("Enemy").Length <= 0) {
 			Fight(false);
-			Globals.ActivateUI(true);
 		}
 	}
 
