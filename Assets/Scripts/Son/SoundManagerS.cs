@@ -30,8 +30,6 @@ public class SoundManagerS : MonoBehaviour {
 	void Start () {
 		AudioS = GetComponent<AudioSource> ();
 		gameManagerScript = GameObject.Find("gameManager").GetComponent<GameManager>();
-		//AudioS.clip = musiqueDefault;
-		//AudioS.Play ();
 	}
 	
 	// Update is called once per frame

@@ -7,7 +7,7 @@ public class Ennemy : MonoBehaviour {
 	private float Life;
 	public float Damage;
 
-	//private Animator anim;
+	private GameManager gameManagerScript;
 
 	// Use this for initialization
 	void Start () {
@@ -16,7 +16,7 @@ public class Ennemy : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+	gameManagerScript = GameObject.Find("gameManager").GetComponent<GameManager>();
 	}
 
 	public void LoseLife (float damage){
@@ -29,6 +29,7 @@ public class Ennemy : MonoBehaviour {
 	
 	private void Dead(){
 		//playSound death
+		gameManagerScript.fight = false;
 		Destroy (this.gameObject);
 	}
 
