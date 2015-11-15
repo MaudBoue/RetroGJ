@@ -12,6 +12,8 @@ public class PlanetInfo{
 
 	public string tribuQuest;
 	public string tribuDon;
+	public bool tribuAttack = false;
+	public string scene = "BPlaneteBleue";
 
 	public PlanetInfo (){
 	}

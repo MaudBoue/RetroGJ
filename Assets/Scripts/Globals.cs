@@ -20,6 +20,8 @@ public class Globals : MonoBehaviour {
 	public static bool quest1 = false;
 	public static bool quest2 = false;
 
+	public static bool uiEnabled = true;
+
 	public static JSONNode getJSON(string filename){
 		return JSON.Parse(System.IO.File.ReadAllText(filename));
 	}
@@ -43,6 +45,15 @@ public class Globals : MonoBehaviour {
 
 
 	public static void GenerateGalaxie(){
+
+		ArrayList scenes = new ArrayList ();
+		scenes.Add ("BPlaneteBCyan");
+		scenes.Add ("BPlaneteRouge1");
+		scenes.Add ("BPlaneteSable1");
+		scenes.Add ("BPlaneteSable2");
+
+		ArrayList alreadyTaken = new ArrayList();
+
 		if (planets == null) {
 			Bounds cameraBounds = PixelPerfectCamera.OrthographicBounds (Camera.main);
 			float xMax = cameraBounds.extents.x - cameraBounds.extents.x * 0.1f;
@@ -62,10 +73,23 @@ public class Globals : MonoBehaviour {
 				
 				int size = Random.Range (1, 3);
 				//float scale = planet.transform.localScale.x / (size * 2);
+
+				// Choix random de la scene
+
+				bool sceneOk = false;
+				string scene = "";
+
+				while(!sceneOk){
+					int sceneRand = Random.Range(0, scenes.Count);
+
+					scene = (string)scenes[sceneRand];
+					sceneOk = true;
+				}
 				
 				PlanetInfo p = new PlanetInfo ();
 				p.x = x;
 				p.y = y;
+				p.scene = scene;
 				//p.scale = scale;
 				
 				Globals.planets [i] = p;
@@ -77,6 +101,7 @@ public class Globals : MonoBehaviour {
 			System.Array.Sort (Globals.planets, SortPlanets);
 			
 			PlanetInfo p1 = Globals.planets [0];
+			p1.scene = "BPlaneteBleue";
 			p1.tribuId = 1;
 			
 			Globals.currentPlanet = p1;
@@ -109,5 +134,14 @@ public class Globals : MonoBehaviour {
 			}
 		}
 		return true;
+	}
+
+	public static void ActivateUI(bool value){
+		uiEnabled = value;
+
+		GameObject ui = GameObject.Find ("TextsList");
+		if (ui != null) {
+			ui.SetActive(value);
+		}
 	}
 }

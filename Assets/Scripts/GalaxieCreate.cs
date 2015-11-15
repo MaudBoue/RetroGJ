@@ -12,6 +12,8 @@ public class GalaxieCreate : MonoBehaviour {
 	private GameObject lastSelected;
 	private string[] labels;
 
+	public AudioClip selectAudio;
+
 	void Awake(){
 
 		labels = new string[Globals.planetsCount+1];
@@ -85,7 +87,9 @@ public class GalaxieCreate : MonoBehaviour {
 			GameObject planetObject = Instantiate( planet );
 			planetObject.name = "p" + i;
 			planetObject.transform.position = new Vector3(p.x, p.y, 0);
-			//planetObject.transform.localScale = new Vector3(p.scale, p.scale, 0);
+
+			float scale = planetObject.transform.localScale.x;
+			planetObject.transform.localScale = new Vector3(scale / 2, scale / 2, 0);
 		}
 	
 		selected = Globals.currentPlanetId;
@@ -134,6 +138,10 @@ public class GalaxieCreate : MonoBehaviour {
 
 		textObj.GetComponent<Text> ().text = labels [selected];
 	}
+
+	void PlayAudioSelect(){
+
+	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -141,7 +149,8 @@ public class GalaxieCreate : MonoBehaviour {
 		if( Input.GetKeyUp(KeyCode.RightArrow) ){
 			Globals.currentPlanetId = selected;
 			Globals.currentPlanet = Globals.planets[selected];
-			Application.LoadLevel("Baston");
+
+			Application.LoadLevel(Globals.currentPlanet.scene);
 		}
 
 		if( Input.GetKeyUp(KeyCode.UpArrow) ){
@@ -150,6 +159,7 @@ public class GalaxieCreate : MonoBehaviour {
 			}else{
 				OnChangeSelected( Globals.planets.Length - 1 );
 			}
+			PlayAudioSelect ();
 		}
 
 		if( Input.GetKeyUp(KeyCode.DownArrow) ){
@@ -158,6 +168,7 @@ public class GalaxieCreate : MonoBehaviour {
 			}else{
 				OnChangeSelected(0);
 			}
+			PlayAudioSelect ();
 		}
 	}
 }
