@@ -12,7 +12,7 @@ public class LoadScript : MonoBehaviour {
 	}
 
 	void Start(){
-		Application.LoadLevel ("BPlaneteBleue");
+		//Application.LoadLevel ("BPlaneteBleue");
 	}
 	
 	// Update is called once per frame

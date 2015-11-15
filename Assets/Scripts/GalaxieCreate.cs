@@ -12,7 +12,8 @@ public class GalaxieCreate : MonoBehaviour {
 	private GameObject lastSelected;
 	private string[] labels;
 
-	public AudioClip selectAudio;
+	private SoundManagerS SoundM;
+	private GameManager gameManagerScript;
 
 	void Awake(){
 
@@ -95,6 +96,11 @@ public class GalaxieCreate : MonoBehaviour {
 		selected = Globals.currentPlanetId;
 		lastSelected = null;
 		OnChangeSelected (selected);
+
+		gameManagerScript = GameObject.Find("gameManager").GetComponent<GameManager>();
+		SoundM = GameObject.Find ("SoundManager").GetComponent<SoundManagerS> ();
+		SoundM.ChangeMusique (SoundM.musiqueCarte);
+		SoundM.OnPlanete = false;
 	}
 
 	/*bool CheckPosition(float x, float y){
@@ -139,9 +145,7 @@ public class GalaxieCreate : MonoBehaviour {
 		textObj.GetComponent<Text> ().text = labels [selected];
 	}
 
-	void PlayAudioSelect(){
 
-	}
 	
 	// Update is called once per frame
 	void Update () {
@@ -150,7 +154,13 @@ public class GalaxieCreate : MonoBehaviour {
 			Globals.currentPlanetId = selected;
 			Globals.currentPlanet = Globals.planets[selected];
 
+			SoundM.ChangeMusique (SoundM.musiquePlanete);
+			SoundM.OnPlanete = true;
+			gameManagerScript.fight = false;
+
 			Application.LoadLevel(Globals.currentPlanet.scene);
+
+
 		}
 
 		if( Input.GetKeyUp(KeyCode.UpArrow) ){
@@ -159,7 +169,7 @@ public class GalaxieCreate : MonoBehaviour {
 			}else{
 				OnChangeSelected( Globals.planets.Length - 1 );
 			}
-			PlayAudioSelect ();
+
 		}
 
 		if( Input.GetKeyUp(KeyCode.DownArrow) ){
@@ -168,7 +178,7 @@ public class GalaxieCreate : MonoBehaviour {
 			}else{
 				OnChangeSelected(0);
 			}
-			PlayAudioSelect ();
+			//PlayAudioSelect ();
 		}
 	}
 }
