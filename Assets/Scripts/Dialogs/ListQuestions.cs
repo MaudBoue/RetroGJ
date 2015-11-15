@@ -155,7 +155,7 @@ public class ListQuestions : MonoBehaviour {
 		int i = 0;
 		foreach ( KeyValuePair<string, JSONNode> item in list) {
 
-			if( (item.Key == "Dire" || item.Key == "Donner") && Globals.currentPlanet.tribuId == 0){
+			if( (item.Key == "Dire" || item.Key == "Donner") && (Globals.currentPlanet.tribuId == 0 || Globals.currentPlanet.tribuAttack) ){
 				continue;
 			}
 
@@ -227,12 +227,12 @@ public class ListQuestions : MonoBehaviour {
 			}
 		}
 
-		GameObject first = GameObject.Find ("Text0" );
+		/*GameObject first = GameObject.Find ("Text0");
 		if (first != null) {
 			Text t = first.GetComponent<Text> ();
 			if (t.text == "")
 				t.text = " - Rien - ";
-		}
+		}*/
 	}
 
 	void OnChange(int change){
