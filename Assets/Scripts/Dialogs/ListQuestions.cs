@@ -88,13 +88,10 @@ public class ListQuestions : MonoBehaviour {
 			}
 
 		} else {
-			// Random de rencontre
-			if( Random.Range(1,5) == 1 ){
-				// Monters @todo
-				Fight (true);
-				Globals.ActivateUI(false);
-			}
 
+			Fight (true);
+			Globals.ActivateUI(false);
+			
 			if( Random.Range (1,3) == 1 ){
 				int randObjCount = Random.Range(1, 3);
 				for(int i = 0; i < randObjCount; i++){
@@ -145,6 +142,11 @@ public class ListQuestions : MonoBehaviour {
 			if (Input.GetKeyUp (KeyCode.LeftArrow) && !inReponse) {
 				OnBack ();
 			}
+		}
+
+		if (GameObject.FindGameObjectsWithTag ("Enemy").Length <= 0 && !Globals.uiEnabled) {
+			Fight(false);
+			Globals.ActivateUI(true);
 		}
 	}
 
