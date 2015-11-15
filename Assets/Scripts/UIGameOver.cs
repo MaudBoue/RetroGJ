@@ -20,7 +20,7 @@ public class UIGameOver : MonoBehaviour {
 		SoundM.ChangeMusique (SoundM.musiquePlanete);
 		SoundM.OnPlanete = true;
 		gameManagerScript.fight = false;
-		Application.LoadLevel ("BPlaneteBleue");
+		Application.LoadLevel ("Load");
 	}
 
 	public void quitter(){
