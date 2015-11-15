@@ -4,12 +4,16 @@ using System.Collections;
 public class DudeMove : MonoBehaviour {
 
 	public float speed = 0.025f;
+	public float JumpForce = 3;
+
 	private float move = 0f;
 	public Animator animator;
 
+	private Rigidbody2D rigid;
+
 	// Use this for initialization
 	void Start () {
-	
+	rigid = gameObject.GetComponent<Rigidbody2D>();
 	}
 	
 	// Update is called once per frame
@@ -31,6 +35,10 @@ public class DudeMove : MonoBehaviour {
 		}
 		if (inputMove<0){
 			animator.SetBool("Droite",false);
+		}
+
+		if(Input.GetKeyDown(KeyCode.Space) ){ //&& touche == true : recharge quand au sol?
+			rigid.AddForce(new Vector2(0,JumpForce), ForceMode2D.Impulse);
 		}
 
 	}
