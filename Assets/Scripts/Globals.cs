@@ -29,8 +29,7 @@ public class Globals : MonoBehaviour {
 
 	// A chaque nouvelle planete
 	public static void CheckState(){
-	
-		Debug.Log (planetsVisited);
+
 		if (planetsVisited == 0) {
 			Globals.faim -= 10;
 			Globals.soif -= 15;
@@ -59,7 +58,7 @@ public class Globals : MonoBehaviour {
 
 		if (planets == null) {
 			Bounds cameraBounds = PixelPerfectCamera.OrthographicBounds (Camera.main);
-			float xMax = ( cameraBounds.extents.x - cameraBounds.extents.x * 0.1f ) / 2;
+			float xMax = cameraBounds.extents.x - cameraBounds.extents.x * 0.1f;
 			Globals.planets = new PlanetInfo[planetsCount];
 			
 			for (int i = 0; i < planetsCount; i++) {
@@ -147,13 +146,5 @@ public class Globals : MonoBehaviour {
 		if (ui != null) {
 			ui.SetActive(value);
 		}
-	}
-
-	public static bool isFight(){
-		GameObject obj = GameObject.Find ("gameManager");
-		if (obj) {
-			return obj.GetComponent<GameManager>().fight;
-		}
-		return false;
 	}
 }
