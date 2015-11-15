@@ -47,7 +47,7 @@
             "reponses" : [
                           "Certes non.",
                           "Objection.",
-                          "Négatif."
+                          "Negatif."
                           ]
         },
         "Pas un pas !" : {
@@ -65,7 +65,7 @@
             "reponses" : [
                           "Certes non.",
                           "Objection.",
-                          "Négatif."
+                          "Negatif."
                           ]
         },
         "Je t'ecrase d'une main." : {
@@ -74,7 +74,7 @@
             "reponses" : [
                           "Certes non.",
                           "Objection.",
-                          "Négatif."
+                          "Negatif."
                           ]
         },
         "Coeur de martien !" : {
@@ -83,16 +83,16 @@
             "reponses" : [
                           "Certes non.",
                           "Objection.",
-                          "Négatif."
+                          "Negatif."
                           ]
         },
-        "Sulfate dégénéré !" : {
+        "Sulfate degenere !" : {
             "attitude" : -1,
             "aggr" : [1,2,4,5],
             "reponses" : [
                           "Certes non.",
                           "Objection.",
-                          "Négatif."
+                          "Negatif."
                           ]
         },
         "Face d'e-sport !" : {
@@ -101,25 +101,88 @@
             "reponses" : [
                           "Certes non.",
                           "Objection.",
-                          "Négatif."
+                          "Negatif."
                           ]
         },
-        "J'arrive en paix." : {},
-        "Gloire à ton clan !" : {},
-        "Tu reflètes les astres." : {},
-        "Pitié, laisse-moi vivre !" : {
+        "J'arrive en paix." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		},
+        "Gloire a ton clan !" : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		},
+        "Tu refletes les astres." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		},
+        "Pitie, laisse-moi vivre !" : {
             "attitude" : 1,
             "aggr" : [1,2],
             "reponses" : [
-                          "Nous y réfléchissons.",
+                          "Nous y reflechissons.",
                           "Information en cours de traitement.",
-                          "C'est une hypothèse."
+                          "C'est une hypothese."
                           ]
         },
-        "Je mache le kerosene." : {},
-        "Ma force est galactique." : {},
-        "Meme le soleil me fuit." : {},
-        "Les météores m'obéissent." : {}
+        "Je mache le kerosene." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		},
+        "Ma force est galactique." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		},
+        "Meme le soleil me fuit." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		},
+        "Les meteores m'obeissent." : {
+			"attitude" : -1,
+			"aggr" : [1,2,4,5],
+			"fuite" : true,
+			"reponses" : [
+				"Certes...",
+				"Mais encore...",
+				"Non."
+			]
+		}
     },
     "aggr" : {
         "1" : [

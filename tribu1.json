@@ -84,7 +84,7 @@
 				"Non."
 			]
 		},
-		"Sulfate dégénéré !" : {
+		"Sulfate degenere !" : {
 			"attitude" : -1,
 			"aggr" : [1,2,4,5],
 			"reponses" : [
@@ -111,7 +111,7 @@
 				"Ah..."
 			]
 		},
-		"Gloire à ton clan !" : {
+		"Gloire a ton clan !" : {
 			"attitude" : 0,
 			"aggr" : [1,2,4,5],
 			"reponses" : [
@@ -120,7 +120,7 @@
 				"Ah..."
 			]
 		},
-		"Tu reflètes les astres." : {
+		"Tu refletes les astres." : {
 			"attitude" : 0,
 			"aggr" : [1,2,4,5],
 			"reponses" : [
@@ -129,7 +129,7 @@
 				"Ah..."
 			]
 		},
-		"Pitié, laisse-moi vivre !" : {
+		"Pitie, laisse-moi vivre !" : {
 			"attitude" : -1,
 			"aggr" : [1,2],
 			"reponses" : [
@@ -168,7 +168,7 @@
 				"Non."
 			]
 		},
-		"Les météores m'obéissent." : {
+		"Les meteores m'obeissent." : {
 			"attitude" : -1,
 			"aggr" : [1,2,4,5],
 			"fuite" : true,
